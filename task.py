@@ -37,8 +37,8 @@ class Bank(Client):
 if __name__=='__main__':
 
     Merlot=Bank()
-    client1=Merlot.add_client(self,"Robert","Smith",40,20000,1)
-    client2=Merlot.add_client(self,"Anna","Kowalska",35,10000,2)
+    client1=Merlot.add_client("Robert","Smith",40,20000,1)
+    client2=Merlot.add_client("Anna","Kowalska",35,10000,2)
     client1.transfer(100,client2)
     
 
