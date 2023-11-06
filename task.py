@@ -7,6 +7,15 @@ class Bank:
         self.accounts = {}
         self.clients = {}
         self.logger = logging.getLogger(name)
+        self.load_clients()
+
+    def load_clients(self):
+        with open(f"clients_{self.name}.txt", "r") as file:
+            for line in file:
+                data = line.strip().split(",")
+                if len(data) == 3:
+                    name, surname, id = data
+                    self.add_client(Client(name, surname, id, self))
 
     def add_client(self, client):
         self.clients[client.id] = client
@@ -76,6 +85,11 @@ class Bank:
         self.accounts[receiving_account]+=amount
         self.logger.info(f"Received ${amount} from {sending_bank.name} ")
 
+    def save_clients(self):
+        with open(f"clients_{self.name}.txt", "w") as file:
+            for client in self.clients.values():
+                file.write(f"{client.name},{client.surname},{client.id}\n")    
+
 
 class Client():
     def __init__(self,name,surname,id,bank):
@@ -122,5 +136,5 @@ if __name__=='__main__':
     logger.info(client3.get_balance("1333"))
 
     Merlot.print_client("1111")
-    
+    Merlot.save_clients()
 

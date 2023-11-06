@@ -1,0 +1,2 @@
+Anna,Krasny,1222
+Bartlomiej,Maciejowski,4000
